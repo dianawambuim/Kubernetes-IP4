@@ -7,8 +7,12 @@ services:
     depends_on:
       - backend
     stdin_open: true
+    image: dmuchoki/client-image:2.0.0
+    tty: true
     ports:
       - 3000:3000
+    volumes:
+      - ./client:/app
   backend:
     build:
       context: backend
@@ -16,8 +20,11 @@ services:
     environment:
       MONGODB_URI: 'mongodb://diana:diana@localhost:27017'
       PORT: 5000
+    image: dmuchoki/backend-image:1.0.0
     ports:
       - 5000:5000
+    volumes:
+      - ./backend:/app
     depends_on:
       - mongo
   mongo:
@@ -26,4 +33,4 @@ services:
       MONGO_INITDB_ROOT_USERNAME: diana
       MONGO_INITDB_ROOT_PASSWORD: diana
     ports:
-      - 27017:27017
+      - 27018:27017
