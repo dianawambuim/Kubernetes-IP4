@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: devops-group2-database-claim
+spec:
+  capacity:
+   storage: 1Gi
+  

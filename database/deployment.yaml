@@ -16,6 +16,9 @@ spec:
         image: mongo
         ports:
           - containerport: 27017
+        volumeMounts:
+         - name: database-volume
+          MountPath: /data/db
         env:
     name: MONGO_INITDB_ROOT_USERNAME
     valueFrom:
@@ -28,4 +31,8 @@ spec:
       secretKeyRef: 
         name: devops-group2-secrets
         key: MONGO_INITDB_ROOT_PASSWORD
+  volumes:
+    - name: database-volume
+      pesistentVolumeClaim:
+      ClaimName:  devops-group2-database-claim
  
